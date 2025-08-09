@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time Tracker</title>
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#4F46E5">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Time Tracker">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Time Tracker">
+    <meta name="msapplication-TileColor" content="#4F46E5">
+    <meta name="msapplication-starturl" content="/">
+    
+    <!-- PWA Manifest (inline) -->
+    <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIlRpbWUgVHJhY2tlciIsCiAgInNob3J0X25hbWUiOiAiVGltZVRyYWNrZXIiLAogICJkZXNjcmlwdGlvbiI6ICJQcm9mZXNzaW9uYWwgcHVuY2ggY2xvY2sgd2l0aCAxNS1taW51dGUgcm91bmRpbmciLAogICJzdGFydF91cmwiOiAiLiIsCiAgImRpc3BsYXkiOiAic3RhbmRhbG9uZSIsCiAgImJhY2tncm91bmRfY29sb3IiOiAiIzY2N2VlYSIsCiAgInRoZW1lX2NvbG9yIjogIiM0RjQ2RTUiLAogICJvcmllbnRhdGlvbiI6ICJwb3J0cmFpdCIsCiAgImNhdGVnb3JpZXMiOiBbInByb2R1Y3Rpdml0eSIsICJ1dGlsaXRpZXMiLCAiYnVzaW5lc3MiXSwKICAiaWNvbnMiOiBbCiAgICB7CiAgICAgICJzcmMiOiAiZGF0YTppbWFnZS9zdmcreG1sO2Jhc2U2NCxQSE4yWnlCM2FXUjBhRDBpTVRnd0lpQm9aV2xuYUhROUlqRTRNQ0lpSUhacFpYZENiM2c5SWpBZ01DQXhPREFnTVRnd0lpQm1hV3hzUFNKdWIyNWxJaUI0Yld4dWN6MGlhSFIwY0RvdkwzZDNkeTUzTXk1dmNtY3ZNakF3TUM5emRtY2lQZ282UEhKbFkzUWdkMmxrZEdnOUlqRTRNQ0lpSUdobGFXZG9kRDBpTVRnd0lpQnllRDBpTkRBaUlHWnBiR3c5SWlNMFJqUTJSVFVpTHo0S1BHTnBjbU5zWlNCamVEMGlPVEFpSUdONVBTSTVNQ0lpSUhJOUlqWXdJaUJ6ZEhKdmEyVTlJaU5HUmtaR1JrWWlJSE4wY205clpTMTNhV1IwYUQwaU9DSmNMejRLUEd4cGJtVWdlREU5SWprNUlpQjVNVDBpT1RBaUlIZ3lQU0k1TUNJZ2VUSTlJalV3SWlCemRISnZhMlU5SWlOR1JrWkdSa1lpSUhOMGNtOXJaUzEzYVdSMGFEMGlOaUlnYzNSeWIydGxMV3hwYm1WallYQTlJbkp2ZFc1a0lsd2NMejRLUEd4cGJtVWdlREU5SWprNUlpQjVNVDBpT1RBaUlIZ3lQU0l4TWpBaUlIa3lQU0k1TUNJZ2MzUnliMnRsUFNJalJrWkdSa1pHSWlCemRISnZhMlV0ZDJsa2RHZzlJalFpSUhOMGNtOXJaUzFzYVc1bFkyRndQU0p5YjNWdVpDSmNMejRLUEdOcGNtTnNaU0JqZUQwaU9UQWlJR041UFNJNUlpQnlQU0kwSWlCbWFXeHNQU0lqUmtaR1JrWkdJbDhjTHo0S1BDOXpkbWMrIiwKICAgICAgInNpemVzIjogIjE4MHgxODAiLAogICAgICAidHlwZSI6ICJpbWFnZS9zdmcreG1sIiwKICAgICAgInB1cnBvc2UiOiAiYW55IG1hc2thYmxlIgogICAgfSwKICAgIHsKICAgICAgInNyYyI6ICJkYXRhOmltYWdlL3N2Zyt4bWw7YmFzZTY0LFBITjJaeUIzYVdSMGFEMGlOVEV5SWlCb1pXbG5hSFE5SWpVeE1pSWdkbWxsZDBKdmVEMGlNQ0F3SUFFMU1USWdOVEV5SWlCbWFXeHNQU0p1YjI1bElpQjRiV3h1Y3owaWFIUjBjRG92TDNkM2R5NTNNeTV2Y21jdk1qQXdNQzl6ZG1jaVBnb2tQR0psWTNRZ2QybGtkR2c5SWpVeE1pSWdhR1ZwWjJoMFBTSTFNVElpSUhKNFBTSTRNQ0lnWm1sc2JEMGlJelEzTkRaaE9TSmNMejRLUEdOcGNtTnNaU0JqZUQwaU1qVTJJaUJqZVQwaU1qVTJJaUJ5UFNJeE5EQWlJSE4wY205clpUMGlJMFpHUmtaR1JpSWdjM1J5YjJ0bExYZHBaSFJvUFNJeE1DSmNMejRLUEd4cGJtVWdlREU5SWpJMU5pSWdlVEU5SWpJMU5pSWdlREk5SWpJMU5pSWdlVEk5SWpFME5pSWdjM1J5YjJ0bFBTSWpSa1pHUmtaR0lpQnpkSEp2YTJVdGQybGtkR2c5SWpZaUlITjBjbTlyWlMxc2FXNWxZMkZ3UFNKeWIzVnVaQ0pjTHo0S1BHeHBibVVnZURFOUlqSTFOaUlnZVRFOUlqSTFOaUlnZURJOUlqTTFNaUlnZVRJOUlqSTFOaUlnYzNSeWIydGxQU0lqUmtaR1JrWkdJaUJ6ZEhKdmEyVXRkMmxrZEdnOUlqVWlJSE4wY205clpTMXNhVzVsWTJGd1BTSnliM1Z1WkNKY0x6NEtQR05wY21Oc1pTQmplRDBpTWpVMklpQmplVDBpTWpVMklpQnlQU0l5SWlCbWFXeHNQU0lqUmtaR1JrWkdJbHd2UGdvOEwyTnBjbU5zWlQ0S1BHeDRKeUIzYVdSMGFEMGlNakF3SWlCb1pXbG5hSFE5SWpJd01DSWdlREU5SWpFd01DSWdlVEU5SWpFd01DSWdlREk5SWpFd01DSWdlVEk5SWpWd0lpQnpkSEp2YTJVOUlpTkdSa1pHUmtZaUlITjBjbTlyWlMxM2FXUjBhRDBpTWlJZ2MzUnliMnRsTFd4cGJtVmpZWEE5SW5KdmRXNWtJbHd2UGdvOEwzTjJaejQ9IiwKICAgICAgInNpemVzIjogIjUxMng1MTIiLAogICAgICAidHlwZSI6ICJpbWFnZS9zdmcreG1sIiwKICAgICAgInB1cnBvc2UiOiAiYW55IG1hc2thYmxlIgogICAgfQogIF0KfQ==">
+    
+    <!-- Icon for mobile devices -->
+    <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE4MCIgdmlld0JveD0iMCAwIDE4MCAxODAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxODAiIGhlaWdodD0iMTgwIiByeD0iNDAiIGZpbGw9IiM0RjQ2RTUiLz4KPGNpcmNsZSBjeD0iOTAiIGN5PSI5MCIgcj0iNjAiIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLXdpZHRoPSI4Ii8+CjxsaW5lIHgxPSI5MCIgeTE9IjkwIiB4Mj0iOTAiIHkyPSI1MCIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgo8bGluZSB4MT0iOTAiIHkxPSI5MCIgeDI9IjEyMCIgeTI9IjkwIiBzdHJva2U9IiNGRkZGRkYiIHN0cm9rZS13aWR0aD0iNCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CjxjaXJjbGUgY3g9IjkwIiBjeT0iOTAiIHI9IjQiIGZpbGw9IiNGRkZGRkYiLz4KPC9zdmc+">
+    <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiByeD0iOCIgZmlsbD0iIzRGNDZFNSIvPgo8Y2lyY2xlIGN4PSIxNiIgY3k9IjE2IiByPSIxMCIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjIiLz4KPGxpbmUgeDE9IjE2IiB5MT0iMTYiIHgyPSIxNiIgeTI9IjgiIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KPGxpbmUgeDE9IjE2IiB5MT0iMTYiIHgyPSIyMiIgeTI9IjE2IiBzdHJva2U9IiNGRkZGRkYiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KPGNpcmNsZSBjeD0iMTYiIGN5PSIxNiIgcj0iMSIgZmlsbD0iI0ZGRkZGRiIvPgo8L3N2Zz4K">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 480px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            color: #4F46E5;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .clock-icon {
+            width: 40px;
+            height: 40px;
+            border: 3px solid #4F46E5;
+            border-radius: 50%;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .clock-icon::before {
+            content: '';
+            position: absolute;
+            width: 2px;
+            height: 12px;
+            background: #4F46E5;
+            top: 6px;
+        }
+
+        .clock-icon::after {
+            content: '';
+            position: absolute;
+            width: 2px;
+            height: 8px;
+            background: #4F46E5;
+            right: 6px;
+        }
+
+        .subtitle {
+            color: #6B7280;
+            font-size: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #374151;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        input[type="time"], input[type="number"] {
+            width: 100%;
+            padding: 16px;
+            border: 2px solid #E5E7EB;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            background: white;
+            color: #1F2937;
+        }
+
+        input[type="time"]:focus, input[type="number"]:focus {
+            outline: none;
+            border-color: #4F46E5;
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+        }
+
+        input[type="number"] {
+            text-align: center;
+        }
+
+        .time-inputs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .lunch-config {
+            background: #F8FAFC;
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid #E2E8F0;
+        }
+
+        .lunch-config label {
+            color: #64748B;
+            font-size: 0.9rem;
+        }
+
+        .calculate-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #4F46E5, #7C3AED);
+            color: white;
+            border: none;
+            padding: 18px;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 30px 0 20px 0;
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+        }
+
+        .calculate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(79, 70, 229, 0.4);
+        }
+
+        .calculate-btn:active {
+            transform: translateY(0);
+        }
+
+        .results {
+            background: linear-gradient(135deg, #F0FDF4, #F0F9FF);
+            border-radius: 16px;
+            padding: 24px;
+            margin-top: 20px;
+            border: 2px solid #D1FAE5;
+            text-align: center;
+        }
+
+        .results h3 {
+            color: #059669;
+            font-size: 1.3rem;
+            margin-bottom: 16px;
+            font-weight: 700;
+        }
+
+        .time-display {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 16px;
+        }
+
+        .time-card {
+            background: white;
+            padding: 16px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .time-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1F2937;
+            margin-bottom: 4px;
+        }
+
+        .time-label {
+            font-size: 0.85rem;
+            color: #6B7280;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .breakdown {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #D1FAE5;
+            text-align: left;
+        }
+
+        .breakdown-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+
+        .breakdown-label {
+            color: #6B7280;
+        }
+
+        .breakdown-value {
+            font-weight: 600;
+            color: #374151;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* PWA Install Prompt Styles */
+        .install-prompt {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #4F46E5, #7C3AED);
+            color: white;
+            padding: 16px 20px;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(79, 70, 229, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.95rem;
+            z-index: 1000;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .install-prompt.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .install-prompt .install-icon {
+            width: 24px;
+            height: 24px;
+            border: 2px solid white;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        .install-prompt .install-text {
+            flex: 1;
+            font-weight: 500;
+        }
+
+        .install-prompt .install-buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .install-btn, .dismiss-btn {
+            padding: 8px 16px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .install-btn {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .install-btn:hover, .dismiss-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-1px);
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                padding: 24px;
+                margin: 10px;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .time-inputs {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .time-display {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>
+                <div class="clock-icon"></div>
+                Time Tracker
+            </h1>
+            <p class="subtitle">Professional punch clock with 15-minute rounding</p>
+        </div>
+
+        <form id="timeForm">
+            <div class="time-inputs">
+                <div class="form-group">
+                    <label for="punchIn">Punch In</label>
+                    <input type="time" id="punchIn" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="punchOut">Punch Out</label>
+                    <input type="time" id="punchOut" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="lunch-config">
+                    <label for="lunchBreak">Lunch Break (minutes)</label>
+                    <input type="number" id="lunchBreak" value="30" min="0" max="120" step="15">
+                </div>
+            </div>
+
+            <button type="submit" class="calculate-btn">Calculate Time</button>
+        </form>
+
+        <div id="results" class="results hidden">
+            <h3>Total Work Time</h3>
+            
+            <div class="time-display">
+                <div class="time-card">
+                    <div class="time-value" id="hoursMinutes">-</div>
+                    <div class="time-label">Hours & Minutes</div>
+                </div>
+                
+                <div class="time-card">
+                    <div class="time-value" id="decimalHours">-</div>
+                    <div class="time-label">Decimal Hours</div>
+                </div>
+            </div>
+
+            <div class="breakdown">
+                <div class="breakdown-item">
+                    <span class="breakdown-label">Original punch in:</span>
+                    <span class="breakdown-value" id="originalIn">-</span>
+                </div>
+                <div class="breakdown-item">
+                    <span class="breakdown-label">Original punch out:</span>
+                    <span class="breakdown-value" id="originalOut">-</span>
+                </div>
+                <div class="breakdown-item">
+                    <span class="breakdown-label">Rounded punch in:</span>
+                    <span class="breakdown-value" id="roundedIn">-</span>
+                </div>
+                <div class="breakdown-item">
+                    <span class="breakdown-label">Rounded punch out:</span>
+                    <span class="breakdown-value" id="roundedOut">-</span>
+                </div>
+                <div class="breakdown-item">
+                    <span class="breakdown-label">Lunch break:</span>
+                    <span class="breakdown-value" id="lunchTime">-</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- PWA Install Prompt -->
+        <div id="installPrompt" class="install-prompt">
+            <div class="install-icon">📱</div>
+            <div class="install-text">Install Time Tracker as an app for quick access!</div>
+            <div class="install-buttons">
+                <button class="install-btn" id="installBtn">Install</button>
+                <button class="dismiss-btn" id="dismissBtn">Later</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Debug function to check if script is loading
+        console.log('Time Tracker script loaded');
+
+        // PWA Install functionality
+        let deferredPrompt;
+        let installPromptShown = false;
+
+        // Service Worker Registration (inline)
+        if ('serviceWorker' in navigator) {
+            const swCode = `
+                const CACHE_NAME = 'time-tracker-v1';
+                const urlsToCache = ['/'];
+
+                self.addEventListener('install', function(event) {
+                    event.waitUntil(
+                        caches.open(CACHE_NAME)
+                            .then(function(cache) {
+                                return cache.addAll(urlsToCache);
+                            })
+                    );
+                });
+
+                self.addEventListener('fetch', function(event) {
+                    event.respondWith(
+                        caches.match(event.request)
+                            .then(function(response) {
+                                if (response) {
+                                    return response;
+                                }
+                                return fetch(event.request);
+                            }
+                        )
+                    );
+                });
+            `;
+
+            const blob = new Blob([swCode], { type: 'application/javascript' });
+            const swUrl = URL.createObjectURL(blob);
+
+            navigator.serviceWorker.register(swUrl)
+                .then(function(registration) {
+                    console.log('Service Worker registered successfully:', registration.scope);
+                })
+                .catch(function(error) {
+                    console.log('Service Worker registration failed:', error);
+                });
+        }
+
+        // PWA Install Event Handlers
+        window.addEventListener('beforeinstallprompt', (e) => {
+            console.log('PWA install prompt triggered');
+            e.preventDefault();
+            deferredPrompt = e;
+            showInstallPrompt();
+        });
+
+        function showInstallPrompt() {
+            if (installPromptShown) return;
+            
+            const prompt = document.getElementById('installPrompt');
+            if (prompt) {
+                setTimeout(() => {
+                    prompt.classList.add('show');
+                    installPromptShown = true;
+                }, 2000); // Show after 2 seconds
+            }
+        }
+
+        function hideInstallPrompt() {
+            const prompt = document.getElementById('installPrompt');
+            if (prompt) {
+                prompt.classList.remove('show');
+            }
+        }
+
+        // Check if already installed
+        function checkIfInstalled() {
+            if (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) {
+                console.log('App is running in standalone mode');
+                return true;
+            }
+            return false;
+        }
+
+        function roundTo15Minutes(timeString) {
+            console.log('Rounding time:', timeString);
+            const [hours, minutes] = timeString.split(':').map(Number);
+            const totalMinutes = hours * 60 + minutes;
+            
+            const remainder = totalMinutes % 15;
+            let roundedMinutes;
+            
+            if (remainder <= 7) {
+                roundedMinutes = totalMinutes - remainder;
+            } else {
+                roundedMinutes = totalMinutes + (15 - remainder);
+            }
+            
+            const roundedHours = Math.floor(roundedMinutes / 60) % 24;
+            const mins = roundedMinutes % 60;
+            
+            const result = `${String(roundedHours).padStart(2, '0')}:${String(mins).padStart(2, '0')}`;
+            console.log('Rounded to:', result);
+            return result;
+        }
+
+        function timeToMinutes(timeString) {
+            const [hours, minutes] = timeString.split(':').map(Number);
+            return hours * 60 + minutes;
+        }
+
+        function minutesToTime(totalMinutes) {
+            const hours = Math.floor(totalMinutes / 60);
+            const minutes = totalMinutes % 60;
+            return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
+        }
+
+        function minutesToHoursMinutesFormat(totalMinutes) {
+            const hours = Math.floor(totalMinutes / 60);
+            const minutes = totalMinutes % 60;
+            
+            if (hours === 0) {
+                return `${minutes}m`;
+            } else if (minutes === 0) {
+                return `${hours}h`;
+            } else {
+                return `${hours}h ${minutes}m`;
+            }
+        }
+
+        function calculateWorkTime() {
+            console.log('Calculate button clicked!');
+            
+            try {
+                const punchInValue = document.getElementById('punchIn').value;
+                const punchOutValue = document.getElementById('punchOut').value;
+                const lunchBreakValue = parseInt(document.getElementById('lunchBreak').value) || 0;
+
+                console.log('Values:', { punchInValue, punchOutValue, lunchBreakValue });
+
+                if (!punchInValue || !punchOutValue) {
+                    alert('Please enter both punch in and punch out times.');
+                    return;
+                }
+
+                // Round the times
+                const roundedPunchIn = roundTo15Minutes(punchInValue);
+                const roundedPunchOut = roundTo15Minutes(punchOutValue);
+
+                // Convert to minutes
+                let punchInMinutes = timeToMinutes(roundedPunchIn);
+                let punchOutMinutes = timeToMinutes(roundedPunchOut);
+
+                console.log('Minutes:', { punchInMinutes, punchOutMinutes });
+
+                // Handle overnight shifts
+                if (punchOutMinutes <= punchInMinutes) {
+                    punchOutMinutes += 24 * 60; // Add 24 hours
+                    console.log('Overnight shift detected, adjusted punch out to:', punchOutMinutes);
+                }
+
+                // Calculate total work time
+                const totalMinutes = punchOutMinutes - punchInMinutes - lunchBreakValue;
+                console.log('Total work minutes:', totalMinutes);
+
+                if (totalMinutes <= 0) {
+                    alert('Work time cannot be negative. Please check your times and lunch break.');
+                    return;
+                }
+
+                // Display results
+                document.getElementById('originalIn').textContent = punchInValue;
+                document.getElementById('originalOut').textContent = punchOutValue;
+                document.getElementById('roundedIn').textContent = roundedPunchIn;
+                document.getElementById('roundedOut').textContent = roundedPunchOut;
+                document.getElementById('lunchTime').textContent = `${lunchBreakValue} minutes`;
+                document.getElementById('hoursMinutes').textContent = minutesToHoursMinutesFormat(totalMinutes);
+                document.getElementById('decimalHours').textContent = (totalMinutes / 60).toFixed(2) + 'h';
+
+                document.getElementById('results').classList.remove('hidden');
+                console.log('Results displayed successfully');
+                
+            } catch (error) {
+                console.error('Error in calculateWorkTime:', error);
+                alert('An error occurred. Please check the browser console.');
+            }
+        }
+
+        // Wait for DOM to be fully loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded, setting up event listeners');
+            
+            // Hide install prompt if already installed
+            if (checkIfInstalled()) {
+                const prompt = document.getElementById('installPrompt');
+                if (prompt) {
+                    prompt.style.display = 'none';
+                }
+            }
+
+            // PWA Install Button Event Listeners
+            const installBtn = document.getElementById('installBtn');
+            const dismissBtn = document.getElementById('dismissBtn');
+
+            if (installBtn) {
+                installBtn.addEventListener('click', async () => {
+                    if (deferredPrompt) {
+                        deferredPrompt.prompt();
+                        const { outcome } = await deferredPrompt.userChoice;
+                        console.log(`User response to the install prompt: ${outcome}`);
+                        deferredPrompt = null;
+                    }
+                    hideInstallPrompt();
+                });
+            }
+
+            if (dismissBtn) {
+                dismissBtn.addEventListener('click', () => {
+                    hideInstallPrompt();
+                });
+            }
+            
+            // Event listeners for time calculation
+            const form = document.getElementById('timeForm');
+            const button = document.querySelector('.calculate-btn');
+            
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    console.log('Form submit event triggered');
+                    e.preventDefault();
+                    calculateWorkTime();
+                });
+            }
+            
+            if (button) {
+                button.addEventListener('click', function(e) {
+                    console.log('Button click event triggered');
+                    e.preventDefault();
+                    calculateWorkTime();
+                });
+            }
+
+            // Set default punch in time to 7:00 AM
+            const punchInInput = document.getElementById('punchIn');
+            if (punchInInput) {
+                punchInInput.value = '07:00';
+                console.log('Default punch in time set to: 07:00');
+            }
+        });
+    </script>
+</body>
+</html>
