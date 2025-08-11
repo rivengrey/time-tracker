@@ -537,46 +537,74 @@
                 });
         }
 
-        // Voice Recognition Setup
+        // Voice Recognition Setup with Progressive Enhancement
         function initVoiceRecognition() {
-            if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
-                const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-                recognition = new SpeechRecognition();
-                recognition.continuous = false;
-                recognition.interimResults = false;
-                recognition.lang = 'en-US';
+            // Always show voice buttons initially, hide only if they definitely won't work
+            let voiceAvailable = false;
+            
+            try {
+                // Check if speech recognition exists
+                if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+                    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+                    
+                    // Try to create an instance
+                    recognition = new SpeechRecognition();
+                    recognition.continuous = false;
+                    recognition.interimResults = false;
+                    recognition.lang = 'en-US';
 
-                recognition.onstart = function() {
-                    isListening = true;
-                    updateVoiceStatus('Listening...', 'listening');
-                };
+                    recognition.onstart = function() {
+                        isListening = true;
+                        updateVoiceStatus('Listening...', 'listening');
+                        updateVoiceButtons();
+                    };
 
-                recognition.onresult = function(event) {
-                    const transcript = event.results[0][0].transcript.toLowerCase();
-                    console.log('Voice input:', transcript);
-                    const time = parseVoiceTime(transcript);
-                    if (time && currentVoiceTarget) {
-                        document.getElementById(currentVoiceTarget).value = time;
-                        updateVoiceStatus(`Got it: ${time}`, 'success');
-                    } else {
-                        updateVoiceStatus('Could not understand time', 'error');
-                    }
-                };
+                    recognition.onresult = function(event) {
+                        const transcript = event.results[0][0].transcript.toLowerCase();
+                        console.log('Voice input:', transcript);
+                        const time = parseVoiceTime(transcript);
+                        if (time && currentVoiceTarget) {
+                            document.getElementById(currentVoiceTarget).value = time;
+                            updateVoiceStatus(`Got it: ${time}`, 'success');
+                        } else {
+                            updateVoiceStatus('Try saying "seven fifteen" or "twelve thirty"', 'error');
+                        }
+                    };
 
-                recognition.onerror = function(event) {
-                    console.log('Speech recognition error:', event.error);
-                    updateVoiceStatus('Voice input not available', 'error');
-                };
+                    recognition.onerror = function(event) {
+                        console.log('Speech recognition error:', event.error);
+                        
+                        // Handle different error types
+                        switch(event.error) {
+                            case 'not-allowed':
+                                updateVoiceStatus('Please allow microphone access', 'error');
+                                break;
+                            case 'no-speech':
+                                updateVoiceStatus('No speech detected - try again', 'error');
+                                break;
+                            case 'network':
+                                updateVoiceStatus('Network error - check connection', 'error');
+                                break;
+                            default:
+                                updateVoiceStatus('Voice input not working', 'error');
+                        }
+                    };
 
-                recognition.onend = function() {
-                    isListening = false;
-                    updateVoiceButtons();
-                    setTimeout(() => clearVoiceStatus(), 3000);
-                };
+                    recognition.onend = function() {
+                        isListening = false;
+                        updateVoiceButtons();
+                        setTimeout(() => clearVoiceStatus(), 4000);
+                    };
 
-                return true;
+                    voiceAvailable = true;
+                    console.log('Voice recognition initialized successfully');
+                }
+            } catch (error) {
+                console.log('Voice recognition not available:', error);
+                voiceAvailable = false;
             }
-            return false;
+            
+            return voiceAvailable;
         }
 
         function parseVoiceTime(transcript) {
@@ -836,12 +864,15 @@
         document.addEventListener('DOMContentLoaded', function() {
             console.log('DOM loaded, setting up event listeners');
             
-            // Initialize voice recognition
+            // Initialize voice recognition with progressive enhancement
             const voiceSupported = initVoiceRecognition();
             if (!voiceSupported) {
-                // Hide voice buttons if not supported
+                // Only hide if definitively not supported
                 const voiceControls = document.querySelectorAll('.voice-controls');
                 voiceControls.forEach(control => control.style.display = 'none');
+                console.log('Voice input not supported - hiding buttons');
+            } else {
+                console.log('Voice input ready - showing buttons');
             }
             
             // Hide install prompt if already installed
