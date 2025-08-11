@@ -1,26 +1,26 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Time Tracker</title>
+    <title>ClockCare</title>
     
     <!-- PWA Meta Tags -->
-    <meta name="theme-color" content="#4F46E5">
+    <meta name="theme-color" content="#42b3f5">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <meta name="apple-mobile-web-app-title" content="Time Tracker">
+    <meta name="apple-mobile-web-app-title" content="ClockCare">
     <meta name="mobile-web-app-capable" content="yes">
-    <meta name="application-name" content="Time Tracker">
-    <meta name="msapplication-TileColor" content="#4F46E5">
+    <meta name="application-name" content="ClockCare">
+    <meta name="msapplication-TileColor" content="#42b3f5">
     <meta name="msapplication-starturl" content="/">
     
     <!-- PWA Manifest (inline) -->
-    <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIlRpbWUgVHJhY2tlciIsCiAgInNob3J0X25hbWUiOiAiVGltZVRyYWNrZXIiLAogICJkZXNjcmlwdGlvbiI6ICJQcm9mZXNzaW9uYWwgcHVuY2ggY2xvY2sgd2l0aCAxNS1taW51dGUgcm91bmRpbmciLAogICJzdGFydF91cmwiOiAiLiIsCiAgImRpc3BsYXkiOiAic3RhbmRhbG9uZSIsCiAgImJhY2tncm91bmRfY29sb3IiOiAiIzY2N2VlYSIsCiAgInRoZW1lX2NvbG9yIjogIiM0RjQ2RTUiLAogICJvcmllbnRhdGlvbiI6ICJwb3J0cmFpdCIsCiAgImNhdGVnb3JpZXMiOiBbInByb2R1Y3Rpdml0eSIsICJ1dGlsaXRpZXMiLCAiYnVzaW5lc3MiXSwKICAiaWNvbnMiOiBbCiAgICB7CiAgICAgICJzcmMiOiAiZGF0YTppbWFnZS9zdmcreG1sO2Jhc2U2NCxQSE4yWnlCM2FXUjBhRDBpTVRnd0lpQm9aV2xuYUhROUlqRTRNQ0lpSUhacFpYZENiM2c5SWpBZ01DQXhPREFnTVRnd0lpQm1hV3hzUFNKdWIyNWxJaUI0Yld4dWN6MGlhSFIwY0RvdkwzZDNkeTUzTXk1dmNtY3ZNakF3TUM5emRtY2lQZ282UEhKbFkzUWdkMmxrZEdnOUlqRTRNQ0lpSUdobGFXZG9kRDBpTVRnd0lpQnllRDBpTkRBaUlHWnBiR3c5SWlNMFJqUTJSVFVpTHo0S1BHTnBjbU5zWlNCamVEMGlPVEFpSUdONVBTSTVNQ0lpSUhJOUlqWXdJaUJ6ZEhKdmEyVTlJaU5HUmtaR1JrWWlJSE4wY205clpTMTNhV1IwYUQwaU9DSmNMejRLUEd4cGJtVWdlREU5SWprNUlpQjVNVDBpT1RBaUlIZ3lQU0k1TUNJZ2VUSTlJalV3SWlCemRISnZhMlU5SWlOR1JrWkdSa1lpSUhOMGNtOXJaUzEzYVdSMGFEMGlOaUlnYzNSeWIydGxMV3hwYm1WallYQTlJbkp2ZFc1a0lsd2NMejRLUEd4cGJtVWdlREU5SWprNUlpQjVNVDBpT1RBaUlIZ3lQU0l4TWpBaUlIa3lQU0k1TUNJZ2MzUnliMnRsUFNJalJrWkdSa1pHSWlCemRISnZhMlV0ZDJsa2RHZzlJalFpSUhOMGNtOXJaUzFzYVc1bFkyRndQU0p5YjNWdVpDSmNMejRLUEdOcGNtTnNaU0JqZUQwaU9UQWlJR041UFNJNUlpQnlQU0kwSWlCbWFXeHNQU0lqUmtaR1JrWkdJbDhjTHo0S1BDOXpkbWMrIiwKICAgICAgInNpemVzIjogIjE4MHgxODAiLAogICAgICAidHlwZSI6ICJpbWFnZS9zdmcreG1sIiwKICAgICAgInB1cnBvc2UiOiAiYW55IG1hc2thYmxlIgogICAgfSwKICAgIHsKICAgICAgInNyYyI6ICJkYXRhOmltYWdlL3N2Zyt4bWw7YmFzZTY0LFBITjJaeUIzYVdSMGFEMGlOVEV5SWlCb1pXbG5hSFE5SWpVeE1pSWdkbWxsZDBKdmVEMGlNQ0F3SUFFMU1USWdOVEV5SWlCbWFXeHNQU0p1YjI1bElpQjRiV3h1Y3owaWFIUjBjRG92TDNkM2R5NTNNeTV2Y21jdk1qQXdNQzl6ZG1jaVBnb2tQR0psWTNRZ2QybGtkR2c5SWpVeE1pSWdhR1ZwWjJoMFBTSTFNVElpSUhKNFBTSTRNQ0lnWm1sc2JEMGlJelEzTkRaaE9TSmNMejRLUEdOcGNtTnNaU0JqZUQwaU1qVTJJaUJqZVQwaU1qVTJJaUJ5UFNJeE5EQWlJSE4wY205clpUMGlJMFpHUmtaR1JpSWdjM1J5YjJ0bExYZHBaSFJvUFNJeE1DSmNMejRLUEd4cGJtVWdlREU5SWpJMU5pSWdlVEU5SWpJMU5pSWdlREk5SWpJMU5pSWdlVEk5SWpFME5pSWdjM1J5YjJ0bFBTSWpSa1pHUmtaR0lpQnpkSEp2YTJVdGQybGtkR2c5SWpZaUlITjBjbTlyWlMxc2FXNWxZMkZ3UFNKeWIzVnVaQ0pjTHo0S1BHeHBibVVnZURFOUlqSTFOaUlnZVRFOUlqSTFOaUlnZURJOUlqTTFNaUlnZVRJOUlqSTFOaUlnYzNSeWIydGxQU0lqUmtaR1JrWkdJaUJ6ZEhKdmEyVXRkMmxrZEdnOUlqVWlJSE4wY205clpTMXNhVzVsWTJGd1BTSnliM1Z1WkNKY0x6NEtQR05wY21Oc1pTQmplRDBpTWpVMklpQmplVDBpTWpVMklpQnlQU0l5SWlCbWFXeHNQU0lqUmtaR1JrWkdJbHd2UGdvOEwyTnBjbU5zWlQ0S1BHeDRKeUIzYVdSMGFEMGlNakF3SWlCb1pXbG5hSFE5SWpJd01DSWdlREU5SWpFd01DSWdlVEU5SWpFd01DSWdlREk5SWpFd01DSWdlVEk5SWpWd0lpQnpkSEp2YTJVOUlpTkdSa1pHUmtZaUlITjBjbTlyWlMxM2FXUjBhRDBpTWlJZ2MzUnliMnRsTFd4cGJtVmpZWEE5SW5KdmRXNWtJbHd2UGdvOEwzTjJaejQ9IiwKICAgICAgInNpemVzIjogIjUxMng1MTIiLAogICAgICAidHlwZSI6ICJpbWFnZS9zdmcreG1sIiwKICAgICAgInB1cnBvc2UiOiAiYW55IG1hc2thYmxlIgogICAgfQogIF0KfQ==">
+    <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIkNsb2NrQ2FyZSIsCiAgInNob3J0X25hbWUiOiAiQ2xvY2tDYXJlIiwKICAiZGVzY3JpcHRpb24iOiAiRGFpbHkgaG91ciBjYWxjdWxhdG9yIGZvciBoZWFsdGhjYXJlIHByb2Zlc3Npb25hbHMiLAogICJzdGFydF91cmwiOiAiLiIsCiAgImRpc3BsYXkiOiAic3RhbmRhbG9uZSIsCiAgImJhY2tncm91bmRfY29sb3IiOiAiI0U2RjdGRiIsCiAgInRoZW1lX2NvbG9yIjogIiM0MmIzZjUiLAogICJvcmllbnRhdGlvbiI6ICJwb3J0cmFpdCIsCiAgImNhdGVnb3JpZXMiOiBbInByb2R1Y3Rpdml0eSIsICJ1dGlsaXRpZXMiLCAiYnVzaW5lc3MiXSwKICAiaWNvbnMiOiBbCiAgICB7CiAgICAgICJzcmMiOiAiZGF0YTppbWFnZS9zdmcreG1sO2Jhc2U2NCxQSE4yWnlCM2FXUjBhRDBpTVRnd0lpQm9aV2xuYUhROUlqRTRNQ0lpSUhacFpYZENiM2c5SWpBZ01DQXhPREFnTVRnd0lpQm1hV3hzUFNKdWIyNWxJaUI0Yld4dWN6MGlhSFIwY0RvdkwzZDNkeTUzTXk1dmNtY3ZNakF3TUM5emRtY2lQZ282UEhKbFkzUWdkMmxrZEdnOUlqRTRNQ0lpSUdobGFXZG9kRDBpTVRnd0lpQnllRDBpTkRBaUlHWnBiR3c5SWlNME1tSXpaalVpTHo0S1BHTnBjbU5zWlNCamVEMGlPVEFpSUdONVBTSTVNQ0lpSUhJOUlqWXdJaUJ6ZEhKdmEyVTlJaU5HUmtaR1JrWWlJSE4wY205clpTMTNhV1IwYUQwaU9DSmNMejRLUEd4cGJtVWdlREU5SWprNUlpQjVNVDBpT1RBaUlIZ3lQU0k1TUNJZ2VUSTlJalV3SWlCemRISnZhMlU5SWlOR1JrWkdSa1lpSUhOMGNtOXJaUzEzYVdSMGFEMGlOaUlnYzNSeWIydGxMV3hwYm1WallYQTlJbkp2ZFc1a0lsd2NMejRLUEd4cGJtVWdlREU5SWprNUlpQjVNVDBpT1RBaUlIZ3lQU0l4TWpBaUlIa3lQU0k1TUNJZ2MzUnliMnRsUFNJalJrWkdSa1pHSWlCemRISnZhMlV0ZDJsa2RHZzlJalFpSUhOMGNtOXJaUzFzYVc1bFkyRndQU0p5YjNWdVpDSmNMejRLUEdOcGNtTnNaU0JqZUQwaU9UQWlJR041UFNJNUlpQnlQU0kwSWlCbWFXeHNQU0lqUmtaR1JrWkdJbHdjTHo0S1BDOXpkbWMrIiwKICAgICAgInNpemVzIjogIjE4MHgxODAiLAogICAgICAidHlwZSI6ICJpbWFnZS9zdmcreG1sIiwKICAgICAgInB1cnBvc2UiOiAiYW55IG1hc2thYmxlIgogICAgfSwKICAgIHsKICAgICAgInNyYyI6ICJkYXRhOmltYWdlL3N2Zyt4bWw7YmFzZTY0LFBITjJaeUIzYVdSMGFEMGlOVEV5SWlCb1pXbG5hSFE5SWpVeE1pSWdkbWxsZDBKdmVEMGlNQ0F3SUFFMU1USWdOVEV5SWlCbWFXeHNQU0p1YjI1bElpQjRiV3h1Y3owaWFIUjBjRG92TDNkM2R5NTNNeTV2Y21jdk1qQXdNQzl6ZG1jaVBnb2tQR0psWTNRZ2QybGtkR2c5SWpVeE1pSWdhR1ZwWjJoMFBTSTFNVElpSUhKNFBTSTRNQ0lnWm1sc2JEMGlJelEyTW1Jek9EUXlJbHd2UGdvOGFITWdjM0J5YVdkb1BTSTJJaUI0UVQwaUlpQjVRVDBpSWlCM2FXUjBhRDBpTWpBd0lpQm9aV2xuYUhROUlqSXdNQ0luUGdvOGFITWdjM0J5YVdkb1BTSTJJaUI0UVQwaUlpQjVRVDBpSWlCM2FXUjBhRDBpTVRrMklpQm9aV2xuYUhROUlqRXdNQ0VpUEdvU01EQkJQQzlvYWo0S1BHOTJaV3hzWlNCamVEMGlNekEzSWlCamVUMGlNekEzSWlCdllUMGlKUzVOSWlCMGNtRnVjMlp2Y20xOUluTnJaWGREYVdOclNUQm9TVmhCSUNSeElpQnphVzVsUFNJMUlpOCtDbWZqUXowOGNHRjBhQ0JrUFNKTk1qVTJJakEwSVNKRE1UQXViUzNObWpJeFlUSDlOREkyT2pSTUlqTXhOVUZ6TnlKcGRIZE1SemxGUlRKTklUa3hJRGtrWmprOUlqZ3ZKVGhrNFNJdklHbzJMUzVUUm0wdU1UUWdOekEyTVRjQU9UUmNJRmczU25Od1kyMGVRUzByTVJFTVJHOXBKVGM4UFM5d1lYUm9QZ28yUEUxdmNpOTBaeUJtYVRnOVBEOHdleTVzWnpOZU1XVmJPR3hCUXptazZLdUFxWWhsTURoc09ESjFJVEJHVjJoVWVCY2RTVklGVnpoUWFGUmZJVGszZGlCMUluTm5jREJOVG5SaWJHbG9OMmQ2TG4xS1BMdGhQZ284YUM5dUJaUm1aM0JZTWpSQ2JRVnBSRmdPSmpROE1uUjNPVnhqYVE3QVBuNlpZMnNVYUUwNWJtZG9hQ3QwWmlCaVdIcCtJaTQrUEM5dmRXTkhQZ29rUENadWNHRjBhQ0FnTUhWdGFuWnpaU0psT1c1bE5VRUJOVjFVZUlneWNYcFVhVVZ6ZGtnOVFtRWpNSFY0VldaUUlTTlFWazVTSWlCY1BDbDRQZ284Y21WMGV5VkhKeUF6TWJZbmJYQ2VhVlJZUTB0YlNYRWJQRlJtYzJGQlJuUXJhV0oxYjJWaVRGSjFaWGhWV1VOMGJVaGVkZ0ljYVZKdE1YZFdhazRlYWxadVFpODBJalVjZjNCc0l6dFNZa2xVTVE4MU1BRT1Ib2prM1ptNWNUMkF3VHl0c1dRa2JlNDJPS3gvREI3V1h6YkZKOVFYeHVTd0RvZWNJZmdSTUJzQW9zdkZTVU0zQ3BFUzdBZVdoQTZoWWFsbGxpUXhiSE5IYWkzRDB4YzQzMmdPU0hwY0F3VnZpVnA2cm9QdnFRaXRaNSJ9Cik9IiwKICAgICAgInNpemVzIjogIjUxMng1MTIiLAogICAgICAidHlwZSI6ICJpbWFnZS9zdmcreG1sIiwKICAgICAgInB1cnBvc2UiOiAiYW55IG1hc2thYmxlIgogICAgfQogIF0KfQ==">
     
     <!-- Icon for mobile devices -->
-    <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE4MCIgdmlld0JveD0iMCAwIDE4MCAxODAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxODAiIGhlaWdodD0iMTgwIiByeD0iNDAiIGZpbGw9IiM0RjQ2RTUiLz4KPGNpcmNsZSBjeD0iOTAiIGN5PSI5MCIgcj0iNjAiIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLXdpZHRoPSI4Ii8+CjxsaW5lIHgxPSI5MCIgeTE9IjkwIiB4Mj0iOTAiIHkyPSI1MCIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgo8bGluZSB4MT0iOTAiIHkxPSI5MCIgeDI9IjEyMCIgeTI9IjkwIiBzdHJva2U9IiNGRkZGRkYiIHN0cm9rZS13aWR0aD0iNCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CjxjaXJjbGUgY3g9IjkwIiBjeT0iOTAiIHI9IjQiIGZpbGw9IiNGRkZGRkYiLz4KPC9zdmc+">
-    <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiByeD0iOCIgZmlsbD0iIzRGNDZFNSIvPgo8Y2lyY2xlIGN4PSIxNiIgY3k9IjE2IiByPSIxMCIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjIiLz4KPGxpbmUgeDE9IjE2IiB5MT0iMTYiIHgyPSIxNiIgeTI9IjgiIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KPGxpbmUgeDE9IjE2IiB5MT0iMTYiIHgyPSIyMiIgeTI9IjE2IiBzdHJva2U9IiNGRkZGRkYiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KPGNpcmNsZSBjeD0iMTYiIGN5PSIxNiIgcj0iMSIgZmlsbD0iI0ZGRkZGRiIvPgo8L3N2Zz4K">
+    <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE4MCIgdmlld0JveD0iMCAwIDE4MCAxODAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxODAiIGhlaWdodD0iMTgwIiByeD0iNDAiIGZpbGw9IiM0MmIzZjUiLz4KPGNpcmNsZSBjeD0iOTAiIGN5PSI5MCIgcj0iNjAiIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLXdpZHRoPSI4Ii8+CjxsaW5lIHgxPSI5MCIgeTE9IjkwIiB4Mj0iOTAiIHkyPSI1MCIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgo8bGluZSB4MT0iOTAiIHkxPSI5MCIgeDI9IjEyMCIgeTI9IjkwIiBzdHJva2U9IiNGRkZGRkYiIHN0cm9rZS13aWR0aD0iNCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CjxjaXJjbGUgY3g9IjkwIiBjeT0iOTAiIHI9IjQiIGZpbGw9IiNGRkZGRkYiLz4KPC9zdmc+">
+    <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiByeD0iOCIgZmlsbD0iIzQyYjNmNSIvPgo8Y2lyY2xlIGN4PSIxNiIgY3k9IjE2IiByPSIxMCIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjIiLz4KPGxpbmUgeDE9IjE2IiB5MT0iMTYiIHgyPSIxNiIgeTI9IjgiIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KPGxpbmUgeDE9IjE2IiB5MT0iMTYiIHgyPSIyMiIgeTI9IjE2IiBzdHJva2U9IiNGRkZGRkYiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KPGNpcmNsZSBjeD0iMTYiIGN5PSIxNiIgcj0iMSIgZmlsbD0iI0ZGRkZGRiIvPgo8L3N2Zz4K">
     
     <style>
         * {
@@ -31,24 +31,24 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #E6F7FF 0%, #F0F9FF 50%, #FEFBFF 100%);
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 20px;
-            color: #333;
+            color: #334155;
         }
 
         .container {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.9);
             backdrop-filter: blur(20px);
             border-radius: 24px;
             padding: 40px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 8px 32px rgba(148, 163, 184, 0.15);
             width: 100%;
             max-width: 480px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.4);
         }
 
         .header {
@@ -57,7 +57,7 @@
         }
 
         .header h1 {
-            color: #4F46E5;
+            color: #42b3f5;
             font-size: 2.5rem;
             font-weight: 700;
             margin-bottom: 8px;
@@ -70,7 +70,7 @@
         .clock-icon {
             width: 40px;
             height: 40px;
-            border: 3px solid #4F46E5;
+            border: 3px solid #42b3f5;
             border-radius: 50%;
             position: relative;
             display: flex;
@@ -83,7 +83,7 @@
             position: absolute;
             width: 2px;
             height: 12px;
-            background: #4F46E5;
+            background: #42b3f5;
             top: 6px;
         }
 
@@ -92,13 +92,14 @@
             position: absolute;
             width: 2px;
             height: 8px;
-            background: #4F46E5;
+            background: #42b3f5;
             right: 6px;
         }
 
         .subtitle {
-            color: #6B7280;
+            color: #64748B;
             font-size: 1rem;
+            line-height: 1.5;
         }
 
         .form-group {
@@ -108,7 +109,7 @@
         label {
             display: block;
             margin-bottom: 8px;
-            color: #374151;
+            color: #475569;
             font-weight: 600;
             font-size: 0.95rem;
         }
@@ -116,18 +117,18 @@
         input[type="time"], input[type="number"] {
             width: 100%;
             padding: 16px;
-            border: 2px solid #E5E7EB;
+            border: 2px solid #E2E8F0;
             border-radius: 12px;
             font-size: 1.1rem;
             transition: all 0.3s ease;
             background: white;
-            color: #1F2937;
+            color: #334155;
         }
 
         input[type="time"]:focus, input[type="number"]:focus {
             outline: none;
-            border-color: #4F46E5;
-            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+            border-color: #42b3f5;
+            box-shadow: 0 0 0 3px rgba(66, 179, 245, 0.15);
         }
 
         input[type="number"] {
@@ -138,6 +139,52 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 20px;
+        }
+
+        /* Voice Input Styles */
+        .voice-controls {
+            display: flex;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .voice-btn {
+            padding: 8px 12px;
+            background: linear-gradient(135deg, rgba(66, 179, 245, 0.1), rgba(66, 179, 245, 0.05));
+            color: #42b3f5;
+            border: 1px solid rgba(66, 179, 245, 0.3);
+            border-radius: 8px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .voice-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(66, 179, 245, 0.2);
+            background: linear-gradient(135deg, rgba(66, 179, 245, 0.15), rgba(66, 179, 245, 0.1));
+        }
+
+        .voice-btn.listening {
+            background: linear-gradient(135deg, #FEF2F2, #FECACA);
+            border-color: #FCA5A5;
+            color: #DC2626;
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .voice-status {
+            font-size: 0.75rem;
+            color: #64748B;
+            margin-top: 4px;
+            min-height: 16px;
         }
 
         .lunch-config {
@@ -154,7 +201,7 @@
 
         .calculate-btn {
             width: 100%;
-            background: linear-gradient(135deg, #4F46E5, #7C3AED);
+            background: linear-gradient(135deg, #42b3f5, #3b9bd9);
             color: white;
             border: none;
             padding: 18px;
@@ -164,12 +211,13 @@
             cursor: pointer;
             transition: all 0.3s ease;
             margin: 30px 0 20px 0;
-            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+            box-shadow: 0 4px 12px rgba(66, 179, 245, 0.3);
         }
 
         .calculate-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(79, 70, 229, 0.4);
+            box-shadow: 0 8px 20px rgba(66, 179, 245, 0.4);
+            background: linear-gradient(135deg, #3b9bd9, #2e7db8);
         }
 
         .calculate-btn:active {
@@ -177,16 +225,16 @@
         }
 
         .results {
-            background: linear-gradient(135deg, #F0FDF4, #F0F9FF);
+            background: linear-gradient(135deg, #F0F9FF, #E0F7FA);
             border-radius: 16px;
             padding: 24px;
             margin-top: 20px;
-            border: 2px solid #D1FAE5;
+            border: 2px solid rgba(66, 179, 245, 0.2);
             text-align: center;
         }
 
         .results h3 {
-            color: #059669;
+            color: #42b3f5;
             font-size: 1.3rem;
             margin-bottom: 16px;
             font-weight: 700;
@@ -209,13 +257,13 @@
         .time-value {
             font-size: 1.5rem;
             font-weight: 700;
-            color: #1F2937;
+            color: #374151;
             margin-bottom: 4px;
         }
 
         .time-label {
+            color: #64748B;
             font-size: 0.85rem;
-            color: #6B7280;
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
@@ -223,7 +271,7 @@
         .breakdown {
             margin-top: 20px;
             padding-top: 20px;
-            border-top: 1px solid #D1FAE5;
+            border-top: 1px solid rgba(66, 179, 245, 0.2);
             text-align: left;
         }
 
@@ -236,12 +284,12 @@
         }
 
         .breakdown-label {
-            color: #6B7280;
+            color: #64748B;
         }
 
         .breakdown-value {
             font-weight: 600;
-            color: #374151;
+            color: #475569;
         }
 
         .hidden {
@@ -254,11 +302,11 @@
             bottom: 20px;
             left: 20px;
             right: 20px;
-            background: linear-gradient(135deg, #4F46E5, #7C3AED);
+            background: linear-gradient(135deg, #42b3f5, #3b9bd9);
             color: white;
             padding: 16px 20px;
             border-radius: 16px;
-            box-shadow: 0 8px 24px rgba(79, 70, 229, 0.3);
+            box-shadow: 0 8px 24px rgba(66, 179, 245, 0.3);
             display: flex;
             align-items: center;
             gap: 12px;
@@ -344,9 +392,10 @@
         <div class="header">
             <h1>
                 <div class="clock-icon"></div>
-                Time Tracker
+                ClockCare
             </h1>
-            <p class="subtitle">Professional punch clock with 15-minute rounding</p>
+            <p class="subtitle">Daily hour calculator for healthcare professionals<br>
+            <strong>Experiment with your punch times</strong> to get the exact hours you want!</p>
         </div>
 
         <form id="timeForm">
@@ -354,11 +403,23 @@
                 <div class="form-group">
                     <label for="punchIn">Punch In</label>
                     <input type="time" id="punchIn" required>
+                    <div class="voice-controls">
+                        <button type="button" class="voice-btn" id="voiceInBtn">
+                            🎤 Say Time
+                        </button>
+                    </div>
+                    <div class="voice-status" id="voiceInStatus"></div>
                 </div>
 
                 <div class="form-group">
                     <label for="punchOut">Punch Out</label>
                     <input type="time" id="punchOut" required>
+                    <div class="voice-controls">
+                        <button type="button" class="voice-btn" id="voiceOutBtn">
+                            🎤 Say Time
+                        </button>
+                    </div>
+                    <div class="voice-status" id="voiceOutStatus"></div>
                 </div>
             </div>
 
@@ -369,11 +430,11 @@
                 </div>
             </div>
 
-            <button type="submit" class="calculate-btn">Calculate Time</button>
+            <button type="submit" class="calculate-btn">Calculate Daily Hours</button>
         </form>
 
         <div id="results" class="results hidden">
-            <h3>Total Work Time</h3>
+            <h3>Today's Work Hours</h3>
             
             <div class="time-display">
                 <div class="time-card">
@@ -414,7 +475,7 @@
         <!-- PWA Install Prompt -->
         <div id="installPrompt" class="install-prompt">
             <div class="install-icon">📱</div>
-            <div class="install-text">Install Time Tracker as an app for quick access!</div>
+            <div class="install-text">Install ClockCare as an app for quick access!</div>
             <div class="install-buttons">
                 <button class="install-btn" id="installBtn">Install</button>
                 <button class="dismiss-btn" id="dismissBtn">Later</button>
@@ -424,7 +485,12 @@
 
     <script>
         // Debug function to check if script is loading
-        console.log('Time Tracker script loaded');
+        console.log('ClockCare app loaded');
+
+        // Global variables for voice recognition
+        let recognition;
+        let isListening = false;
+        let currentVoiceTarget = null;
 
         // PWA Install functionality
         let deferredPrompt;
@@ -433,7 +499,7 @@
         // Service Worker Registration (inline)
         if ('serviceWorker' in navigator) {
             const swCode = `
-                const CACHE_NAME = 'time-tracker-v1';
+                const CACHE_NAME = 'clockcare-v1';
                 const urlsToCache = ['/'];
 
                 self.addEventListener('install', function(event) {
@@ -469,6 +535,167 @@
                 .catch(function(error) {
                     console.log('Service Worker registration failed:', error);
                 });
+        }
+
+        // Voice Recognition Setup
+        function initVoiceRecognition() {
+            if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+                const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+                recognition = new SpeechRecognition();
+                recognition.continuous = false;
+                recognition.interimResults = false;
+                recognition.lang = 'en-US';
+
+                recognition.onstart = function() {
+                    isListening = true;
+                    updateVoiceStatus('Listening...', 'listening');
+                };
+
+                recognition.onresult = function(event) {
+                    const transcript = event.results[0][0].transcript.toLowerCase();
+                    console.log('Voice input:', transcript);
+                    const time = parseVoiceTime(transcript);
+                    if (time && currentVoiceTarget) {
+                        document.getElementById(currentVoiceTarget).value = time;
+                        updateVoiceStatus(`Got it: ${time}`, 'success');
+                    } else {
+                        updateVoiceStatus('Could not understand time', 'error');
+                    }
+                };
+
+                recognition.onerror = function(event) {
+                    console.log('Speech recognition error:', event.error);
+                    updateVoiceStatus('Voice input not available', 'error');
+                };
+
+                recognition.onend = function() {
+                    isListening = false;
+                    updateVoiceButtons();
+                    setTimeout(() => clearVoiceStatus(), 3000);
+                };
+
+                return true;
+            }
+            return false;
+        }
+
+        function parseVoiceTime(transcript) {
+            // Remove common filler words
+            let text = transcript.replace(/\b(at|punched|in|out)\b/g, '').trim();
+            
+            // Handle various time formats
+            let timeMatch;
+            
+            // "seven fifteen" or "seven fifteen AM/PM"
+            timeMatch = text.match(/(\w+)\s+(\w+)(?:\s+(am|pm))?/);
+            if (timeMatch) {
+                const hour = wordToNumber(timeMatch[1]);
+                const minute = wordToNumber(timeMatch[2]);
+                const period = timeMatch[3];
+                
+                if (hour !== null && minute !== null) {
+                    let finalHour = hour;
+                    
+                    // Handle AM/PM
+                    if (period) {
+                        if (period === 'pm' && hour !== 12) finalHour += 12;
+                        if (period === 'am' && hour === 12) finalHour = 0;
+                    } else {
+                        // Auto-detect AM/PM for common work hours
+                        if (hour >= 1 && hour <= 6) finalHour += 12; // Assume PM for 1-6
+                        if (hour === 12) finalHour = 12; // Keep 12 as is
+                    }
+                    
+                    return `${String(finalHour).padStart(2, '0')}:${String(minute).padStart(2, '0')}`;
+                }
+            }
+            
+            // "seven thirty" format
+            timeMatch = text.match(/(\w+)\s+thirty(?:\s+(am|pm))?/);
+            if (timeMatch) {
+                const hour = wordToNumber(timeMatch[1]);
+                const period = timeMatch[2];
+                
+                if (hour !== null) {
+                    let finalHour = hour;
+                    if (period === 'pm' && hour !== 12) finalHour += 12;
+                    if (period === 'am' && hour === 12) finalHour = 0;
+                    return `${String(finalHour).padStart(2, '0')}:30`;
+                }
+            }
+            
+            // Digital format "seven fifteen" → 7:15
+            timeMatch = text.match(/(\d{1,2}):?(\d{2})(?:\s+(am|pm))?/);
+            if (timeMatch) {
+                let hour = parseInt(timeMatch[1]);
+                const minute = parseInt(timeMatch[2]);
+                const period = timeMatch[3];
+                
+                if (period === 'pm' && hour !== 12) hour += 12;
+                if (period === 'am' && hour === 12) hour = 0;
+                
+                return `${String(hour).padStart(2, '0')}:${String(minute).padStart(2, '0')}`;
+            }
+            
+            return null;
+        }
+
+        function wordToNumber(word) {
+            const numbers = {
+                'zero': 0, 'one': 1, 'two': 2, 'three': 3, 'four': 4, 'five': 5,
+                'six': 6, 'seven': 7, 'eight': 8, 'nine': 9, 'ten': 10,
+                'eleven': 11, 'twelve': 12, 'thirteen': 13, 'fourteen': 14, 'fifteen': 15,
+                'sixteen': 16, 'seventeen': 17, 'eighteen': 18, 'nineteen': 19, 'twenty': 20,
+                'thirty': 30, 'forty': 40, 'fifty': 50
+            };
+            
+            return numbers[word.toLowerCase()] !== undefined ? numbers[word.toLowerCase()] : null;
+        }
+
+        function updateVoiceStatus(message, type) {
+            const statusElements = document.querySelectorAll('.voice-status');
+            statusElements.forEach(el => {
+                el.textContent = message;
+                el.className = `voice-status ${type || ''}`;
+            });
+        }
+
+        function clearVoiceStatus() {
+            const statusElements = document.querySelectorAll('.voice-status');
+            statusElements.forEach(el => {
+                el.textContent = '';
+                el.className = 'voice-status';
+            });
+        }
+
+        function updateVoiceButtons() {
+            const buttons = document.querySelectorAll('.voice-btn');
+            buttons.forEach(btn => {
+                if (isListening) {
+                    btn.classList.add('listening');
+                    btn.textContent = '🛑 Listening...';
+                } else {
+                    btn.classList.remove('listening');
+                    btn.textContent = '🎤 Say Time';
+                }
+            });
+        }
+
+        function startVoiceInput(targetId) {
+            if (!recognition) {
+                updateVoiceStatus('Voice input not supported', 'error');
+                return;
+            }
+            
+            if (isListening) {
+                recognition.stop();
+                return;
+            }
+            
+            currentVoiceTarget = targetId;
+            clearVoiceStatus();
+            recognition.start();
+            updateVoiceButtons();
         }
 
         // PWA Install Event Handlers
@@ -532,12 +759,6 @@
         function timeToMinutes(timeString) {
             const [hours, minutes] = timeString.split(':').map(Number);
             return hours * 60 + minutes;
-        }
-
-        function minutesToTime(totalMinutes) {
-            const hours = Math.floor(totalMinutes / 60);
-            const minutes = totalMinutes % 60;
-            return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
         }
 
         function minutesToHoursMinutesFormat(totalMinutes) {
@@ -615,6 +836,14 @@
         document.addEventListener('DOMContentLoaded', function() {
             console.log('DOM loaded, setting up event listeners');
             
+            // Initialize voice recognition
+            const voiceSupported = initVoiceRecognition();
+            if (!voiceSupported) {
+                // Hide voice buttons if not supported
+                const voiceControls = document.querySelectorAll('.voice-controls');
+                voiceControls.forEach(control => control.style.display = 'none');
+            }
+            
             // Hide install prompt if already installed
             if (checkIfInstalled()) {
                 const prompt = document.getElementById('installPrompt');
@@ -642,6 +871,22 @@
             if (dismissBtn) {
                 dismissBtn.addEventListener('click', () => {
                     hideInstallPrompt();
+                });
+            }
+
+            // Voice input event listeners
+            const voiceInBtn = document.getElementById('voiceInBtn');
+            const voiceOutBtn = document.getElementById('voiceOutBtn');
+            
+            if (voiceInBtn) {
+                voiceInBtn.addEventListener('click', () => {
+                    startVoiceInput('punchIn');
+                });
+            }
+            
+            if (voiceOutBtn) {
+                voiceOutBtn.addEventListener('click', () => {
+                    startVoiceInput('punchOut');
                 });
             }
             
